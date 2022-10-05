@@ -1,9 +1,11 @@
+package com.example.recyclerviewtutorial
+
 import kotlin.random.Random
 
 class ShoppingItem(val itemName: String, val itemCount: Int) {
 
     companion object{
-        var idCounter = 0
+        private var idCounter = 0
         fun createItemList(amount: Int): ArrayList<ShoppingItem>{
             val shoppingItemList = ArrayList<ShoppingItem>()
             for(i in 1..amount){
