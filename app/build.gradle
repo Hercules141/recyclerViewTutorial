@@ -2,8 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     //is this really the way?!
-    id 'kotlin-kapt'
-    id 'com.google.devtools.ksp' version '1.6.10-1.0.3'
+//    id 'kotlin-kapt'
+//    id 'com.google.devtools.ksp' version '1.6.10-1.0.3'
 }
 
 android {
@@ -37,32 +37,46 @@ android {
     }
 }
 
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 dependencies {
 
-    def room_version = '2.4.3'
+
+    //testing another way
+    def room_version = "2.2.0-rc01"
 
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-
-    // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
-    // To use Kotlin Symbol Processing (KSP)
-    ksp "androidx.room:room-compiler:$room_version"
 
-    // optional - RxJava2 support for Room
-    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
 
-    // optional - RxJava3 support for Room
-    implementation "androidx.room:room-rxjava3:$room_version"
 
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    implementation "androidx.room:room-guava:$room_version"
-
-    // optional - Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
-
-    // optional - Paging 3 Integration
-    implementation "androidx.room:room-paging:2.5.0-beta01"
+//    def room_version = '2.4.3'
+//
+//    // To use Kotlin annotation processing tool (kapt)
+//    kapt "androidx.room:room-compiler:$room_version"
+//    // To use Kotlin Symbol Processing (KSP)
+//    ksp "androidx.room:room-compiler:$room_version"
+//
+//    // optional - RxJava2 support for Room
+//    implementation "androidx.room:room-rxjava2:$room_version"
+//
+//    // optional - RxJava3 support for Room
+//    implementation "androidx.room:room-rxjava3:$room_version"
+//
+//    // optional - Guava support for Room, including Optional and ListenableFuture
+//    implementation "androidx.room:room-guava:$room_version"
+//
+//    // optional - Test helpers
+//    testImplementation "androidx.room:room-testing:$room_version"
+//
+//    // optional - Paging 3 Integration
+//    implementation "androidx.room:room-paging:2.5.0-beta01"
 
 
     //standard with stuff from template ex navigation etc.

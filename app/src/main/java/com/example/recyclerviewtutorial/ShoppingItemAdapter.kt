@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewtutorial.room.ShoppingItemDataEntity
 
-class ShoppingItemAdapter(private val mShoppingItemList:  List<ShoppingItem>,val context: Context) : RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder>(){
+class ShoppingItemAdapter(private val mShoppingItemList:  List<ShoppingItemDataEntity>,val context: Context) : RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val nameTextView = itemView.findViewById<TextView>(R.id.itemName)
@@ -31,8 +32,8 @@ class ShoppingItemAdapter(private val mShoppingItemList:  List<ShoppingItem>,val
         val itemName = holder.nameTextView
         val itemAmount = holder.amountTextView
 
-        itemName.text = shoppingItem.itemName
-        itemAmount.text = shoppingItem.itemCount.toString()
+        itemName.text = shoppingItem.shoppingItemName
+        itemAmount.text = shoppingItem.shoppingItemCount.toString()
 
     }
 

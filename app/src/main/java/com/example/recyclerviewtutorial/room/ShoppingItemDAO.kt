@@ -1,9 +1,6 @@
 package com.example.recyclerviewtutorial.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface ShoppingItemDAO {
@@ -14,7 +11,7 @@ interface ShoppingItemDAO {
     @Query("select * from items where idShoppingItem in (:itemIds)")
     fun getAllByIds(itemIds: IntArray): List<ShoppingItemDataEntity>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg items: ShoppingItemDataEntity)
 
     @Delete
