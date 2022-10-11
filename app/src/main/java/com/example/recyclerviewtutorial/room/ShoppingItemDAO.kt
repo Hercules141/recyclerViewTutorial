@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface ShoppingItemDAO {
 
-    @Query("select * from items")
+    @Query("SELECT * FROM items")
     fun getAll() : List<ShoppingItemDataEntity>
 
     @Query("select * from items where idShoppingItem in (:itemIds)")

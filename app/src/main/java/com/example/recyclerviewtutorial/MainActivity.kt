@@ -1,6 +1,7 @@
 package com.example.recyclerviewtutorial
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,31 +14,18 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 //        setContentView(R.layout.test)
         //Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show()
 
         setContentView(R.layout.activity_main)
-
+        
 
         val db = AppDatabase.getDatabase(applicationContext)
         val dao = db.shoppingItemDAO()
 
-        var items: List<ShoppingItemDataEntity> = listOf()
-
-        CoroutineScope(Dispatchers.IO).launch{
-            dao.insertAll(
-                ShoppingItemDataEntity(1, "käse", 10),
-                ShoppingItemDataEntity(2, "milch", 3)
-            )
-
-            items = dao.getAll()
-        }
-
-
+        val items: MutableList<ShoppingItemDataEntity> = mutableListOf()
+        //val items2:
 
 
         //get my RecyclerView
@@ -50,6 +38,23 @@ class MainActivity : AppCompatActivity() {
         rvShoppingItems.adapter = adapter
         //layoutmanager of recyclerView
         rvShoppingItems.layoutManager = LinearLayoutManager(this)
+
+
+        CoroutineScope(Dispatchers.IO).launch{
+            dao.insertAll(
+                ShoppingItemDataEntity(1, "käse", 10),
+                ShoppingItemDataEntity(2, "milch", 3)
+            )
+
+            items.addAll(dao.getAll())
+
+
+            adapter.notifyDataSetChanged()
+//            Toast.makeText(applicationContext, "hi? from thread?", Toast.LENGTH_SHORT).show()
+
+            items.add(ShoppingItemDataEntity(16, "hi", 12))
+            adapter.notifyDataSetChanged()
+        }
 
         super.onCreate(savedInstanceState)
     }
