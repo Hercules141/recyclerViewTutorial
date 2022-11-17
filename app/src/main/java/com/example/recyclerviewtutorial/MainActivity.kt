@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show()
 
         setContentView(R.layout.activity_main)
-        
 
         val db = AppDatabase.getDatabase(applicationContext)
         val dao = db.shoppingItemDAO()
@@ -42,11 +41,11 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch{
             dao.insertAll(
-                ShoppingItemDataEntity(1, "käse", 10),
-                ShoppingItemDataEntity(2, "milch", 3)
+//                ShoppingItemDataEntity(1, "käse", 10),
+//                ShoppingItemDataEntity(2, "milch", 3)
             )
 
-            items.addAll(dao.getAll())
+//            items.addAll(dao.getAll())
 
 
             adapter.notifyDataSetChanged()
