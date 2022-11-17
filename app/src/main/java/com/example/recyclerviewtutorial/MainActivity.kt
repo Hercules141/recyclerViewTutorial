@@ -1,6 +1,7 @@
 package com.example.recyclerviewtutorial
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +16,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        setContentView(R.layout.test)
-        //Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show()
 
         setContentView(R.layout.activity_main)
 
@@ -24,14 +23,9 @@ class MainActivity : AppCompatActivity() {
         val dao = db.shoppingItemDAO()
 
         val items: MutableList<ShoppingItemDataEntity> = mutableListOf()
-        //val items2:
-
 
         //get my RecyclerView
         val rvShoppingItems = findViewById<RecyclerView>(R.id.rvShoppingItems)
-        //create a list with test data
-//        val items = ShoppingItem.createItemList(155)
-        //create Adapter
         val adapter = ShoppingItemAdapter(items,this)
         //set Recycler View Adapter to the one created
         rvShoppingItems.adapter = adapter
@@ -51,8 +45,17 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
 //            Toast.makeText(applicationContext, "hi? from thread?", Toast.LENGTH_SHORT).show()
 
-            items.add(ShoppingItemDataEntity(16, "hi", 12))
+            for(i in (1..100)){
+                items.add(ShoppingItemDataEntity(i, "hi", i))
+            }
+
             adapter.notifyDataSetChanged()
+        }
+
+        //Button to call scroll function at runtime
+        val button1: View = findViewById(R.id.floatingActionButton)
+        button1.setOnClickListener {
+            Toast.makeText(this, "Working!", Toast.LENGTH_SHORT).show()
         }
 
         super.onCreate(savedInstanceState)
