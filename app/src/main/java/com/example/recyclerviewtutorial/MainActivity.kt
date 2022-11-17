@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         //set Recycler View Adapter to the one created
         rvShoppingItems.adapter = adapter
         //layoutmanager of recyclerView
-        rvShoppingItems.layoutManager = LinearLayoutManager(this)
+//        rvShoppingItems.layoutManager = LinearLayoutManager(this)
+        rvShoppingItems.layoutManager = GridLayoutManager(this, 1)
 
 
         CoroutineScope(Dispatchers.IO).launch{
@@ -55,7 +57,8 @@ class MainActivity : AppCompatActivity() {
         //Button to call scroll function at runtime
         val button1: View = findViewById(R.id.floatingActionButton)
         button1.setOnClickListener {
-            Toast.makeText(this, "Working!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Working!", Toast.LENGTH_SHORT).show()
+            rvShoppingItems.scrollToPosition(43-1)
         }
 
         super.onCreate(savedInstanceState)
